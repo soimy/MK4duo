@@ -66,8 +66,6 @@
   #include "Configuration_Overall.h"
 #endif
 
-#include "src/language/language.h"
-
 #if ENABLED(LASERBEAM)
   #include "Configuration_Laser.h"
 #endif
@@ -76,6 +74,7 @@
 #include "src/pins.h"
 #include "src/conditionals_post.h"
 #include "src/sanitycheck.h"
+#include "src/language/language.h"
 #include "src/HAL/HAL.h"
 #include "src/enum.h"
 
