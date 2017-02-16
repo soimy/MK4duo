@@ -926,9 +926,6 @@
     #endif
   #endif
 #endif
-#if DISABLED(DOGLCD) && ENABLED(ULTRA_LCD) && DISABLED(DISPLAY_CHARSET_HD44780)
-  #error "You must set DISPLAY_CHARSET_HD44780 to JAPANESE, WESTERN or CYRILLIC for your LCD controller."
-#endif
 #if ENABLED(SHOW_BOOTSCREEN)
   #if DISABLED(STRING_SPLASH_LINE1)
     #error DEPENDENCY ERROR: Missing setting STRING_SPLASH_LINE1
@@ -1687,8 +1684,8 @@
 /**
  * Required LCD language
  */
-#if DISABLED(DOGLCD) && ENABLED(ULTRA_LCD) && DISABLED(DISPLAY_CHARSET_HD44780_JAPAN) && DISABLED(DISPLAY_CHARSET_HD44780_WESTERN) && DISABLED(DISPLAY_CHARSET_HD44780_CYRILLIC)
-  #error DEPENDENCY ERROR: You must enable either DISPLAY_CHARSET_HD44780_JAPAN or DISPLAY_CHARSET_HD44780_WESTERN  or DISPLAY_CHARSET_HD44780_CYRILLIC for your LCD controller.
+#if DISABLED(DOGLCD) && ENABLED(ULTRA_LCD) && DISABLED(DISPLAY_CHARSET_HD44780)
+  #error "You must set DISPLAY_CHARSET_HD44780 to JAPANESE, WESTERN or CYRILLIC for your LCD controller."
 #endif
 
 /**
@@ -2006,4 +2003,15 @@
 
 #if ENABLED(Z_PROBE_SLED) && !PIN_EXISTS(SLED)
   #error DEPENDENCY ERROR: You have to set SLED_PIN to a valid pin if you enable Z_PROBE_SLED
+#endif
+
+/**
+ * G38 Probe Target
+ */
+#if ENABLED(G38_PROBE_TARGET)
+  #if !HAS_BED_PROBE
+    #error "G38_PROBE_TARGET requires a bed probe."
+  #elif !IS_CARTESIAN
+    #error "G38_PROBE_TARGET requires a Cartesian machine."
+  #endif
 #endif
