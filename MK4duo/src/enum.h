@@ -126,9 +126,9 @@ enum TempState {
     IN_HANDLER,         // Processing a GCode
     IN_PROCESS,         // Known to be blocking command input (as in G29)
     WAIT_HEATER,        // Wait heater
-    DOOR_OPEN,          // Door open
     PAUSED_FOR_USER,    // Blocking pending any input
-    PAUSED_FOR_INPUT    // Blocking pending text input (concept)
+    PAUSED_FOR_INPUT,   // Blocking pending text input (concept)
+    DOOR_OPEN           // Door open
   };
 #endif
 

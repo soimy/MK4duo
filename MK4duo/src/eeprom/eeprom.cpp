@@ -824,7 +824,7 @@ void EEPROM::ResetDefault() {
     #endif
     SERIAL_E;
     #if EXTRUDERS > 1
-      for (uint8_t i = 0; i < EXTRUDERS; i++) {
+      for (int8_t i = 0; i < EXTRUDERS; i++) {
         SERIAL_SMV(CFG, "  M92 T", i);
         SERIAL_EMV(" E", planner.axis_steps_per_mm[E_AXIS + i], 3);
       }
@@ -839,7 +839,7 @@ void EEPROM::ResetDefault() {
     #endif
     SERIAL_E;
     #if EXTRUDERS > 1
-      for (uint8_t i = 0; i < EXTRUDERS; i++) {
+      for (int8_t i = 0; i < EXTRUDERS; i++) {
         SERIAL_SMV(CFG, "  M203 T", i);
         SERIAL_EMV(" E", planner.max_feedrate_mm_s[E_AXIS + i], 3);
       }
@@ -854,7 +854,7 @@ void EEPROM::ResetDefault() {
     #endif
     SERIAL_E;
     #if EXTRUDERS > 1
-      for (uint8_t i = 0; i < EXTRUDERS; i++) {
+      for (int8_t i = 0; i < EXTRUDERS; i++) {
         SERIAL_SMV(CFG, "  M201 T", i);
         SERIAL_EMV(" E", planner.max_acceleration_mm_per_s2[E_AXIS + i]);
       }
@@ -868,7 +868,7 @@ void EEPROM::ResetDefault() {
     #endif
     SERIAL_E;
     #if EXTRUDERS > 1
-      for (uint8_t i = 0; i < EXTRUDERS; i++) {
+      for (int8_t i = 0; i < EXTRUDERS; i++) {
         SERIAL_SMV(CFG, "  M204 T", i);
         SERIAL_EMV(" R", planner.retract_acceleration[i], 3);
       }
@@ -886,7 +886,7 @@ void EEPROM::ResetDefault() {
     #endif
     SERIAL_E;
     #if (EXTRUDERS > 1)
-      for(uint8_t i = 0; i < EXTRUDERS; i++) {
+      for(int8_t i = 0; i < EXTRUDERS; i++) {
         SERIAL_SMV(CFG, "  M205 T", i);
         SERIAL_EMV(" E" , planner.max_jerk[E_AXIS + i], 3);
       }
@@ -899,8 +899,8 @@ void EEPROM::ResetDefault() {
 
     #if HOTENDS > 1
       CONFIG_MSG_START("Hotend offset (mm):");
-      for (uint8_t h = 1; h < HOTENDS; h++) {
-        SERIAL_SMV(CFG, "  M218 T", h);
+      for (int8_t h = 1; h < HOTENDS; h++) {
+        SERIAL_SMV(CFG, "  M218 H", h);
         SERIAL_MV(" X", hotend_offset[X_AXIS][h], 3);
         SERIAL_MV(" Y", hotend_offset[Y_AXIS][h], 3);
         SERIAL_EMV(" Z", hotend_offset[Z_AXIS][h], 3);
@@ -931,7 +931,7 @@ void EEPROM::ResetDefault() {
     #if HEATER_USES_AD595
       CONFIG_MSG_START("AD595 Offset and Gain:");
       for (int8_t h = 0; h < HOTENDS; h++) {
-        SERIAL_SMV(CFG, "  M595 T", h);
+        SERIAL_SMV(CFG, "  M595 H", h);
         SERIAL_MV(" O", ad595_offset[h]);
         SERIAL_EMV(", S", ad595_gain[h]);
       }
