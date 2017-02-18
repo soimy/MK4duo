@@ -209,12 +209,12 @@ void HAL::resetHardware() {
   // --------------------------------------------------------------------------
   // hardware SPI
   // --------------------------------------------------------------------------
-  #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+  #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
     bool spiInitMaded = false;
   #endif
 
   void HAL::spiBegin() {
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       if (spiInitMaded == false) {
     #endif
 
@@ -242,7 +242,7 @@ void HAL::resetHardware() {
     SPI_Configure(SPI0, ID_SPI0, SPI_MR_MSTR | SPI_MR_MODFDIS | SPI_MR_PS);
     SPI_Enable(SPI0);
 
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       SET_OUTPUT(DAC0_SYNC);
       #if EXTRUDERS > 1
         SET_OUTPUT(DAC1_SYNC);
@@ -256,7 +256,7 @@ void HAL::resetHardware() {
       WRITE(SPI_EEPROM2_CS, HIGH );
       WRITE(SPI_FLASH_CS, HIGH );
       WRITE(SS_PIN, HIGH );
-    #endif // MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #endif // MB(ALLIGATOR) || MB(ALLIGATOR_V3)
 
     PIO_Configure(
       g_APinDescription[SPI_PIN].pPort,
@@ -265,7 +265,7 @@ void HAL::resetHardware() {
       g_APinDescription[SPI_PIN].ulPinConfiguration
     );
     spiInit(1);
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       spiInitMaded = true;
       }
     #endif
@@ -273,13 +273,13 @@ void HAL::resetHardware() {
   }
 
   void HAL::spiInit(uint8_t spiClock) {
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       if (spiInitMaded == false) {
     #endif
 
     if (spiClock > 4) spiClock = 1;
 
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       // Set SPI mode 1, clock, select not active after transfer, with delay between transfers  
       SPI_ConfigureNPCS(SPI0, SPI_CHAN_DAC,
                         SPI_CSR_CSAAT | SPI_CSR_SCBR(spiDueDividors[spiClock]) |
@@ -299,7 +299,7 @@ void HAL::resetHardware() {
 
     SPI_Enable(SPI0);
 
-    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3) || MB(ULTRATRONICS)
+    #if MB(ALLIGATOR) || MB(ALLIGATOR_V3)
       spiInitMaded = true;
       }
     #endif
