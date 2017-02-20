@@ -2046,7 +2046,7 @@ static void clean_up_after_endstop_or_probe_move() {
     #if MECH(MAKERARM_SCARA)
       vector_3 point = probe_point_to_end_point(x, y);
       float dx = point.x, dy = point.y;
-      if (dx == 0.0 && dy == 0.0) { BUZZ(100, 220); return 0.0; }
+      if (dx == 0.0 && dy == 0.0) { buzz(100, 220); return 0.0; }
     #else
       const float dx = x - (X_PROBE_OFFSET_FROM_NOZZLE),
                   dy = y - (Y_PROBE_OFFSET_FROM_NOZZLE);
@@ -2406,8 +2406,9 @@ static void clean_up_after_endstop_or_probe_move() {
     static float bed_level_virt_2cmr(const uint8_t x, const uint8_t y, const float &tx, const float &ty) {
       float row[4], column[4];
       for (uint8_t i = 0; i < 4; i++) {
-        for (uint8_t j = 0; j < 4; j++) // can be memcopy or through memory access
+        for (uint8_t j = 0; j < 4; j++) {
           column[j] = bed_level_virt_coord(i + x - 1, j + y - 1);
+        }
         row[i] = bed_level_virt_cmr(column, 1, ty);
       }
       return bed_level_virt_cmr(row, 1, tx);
@@ -2434,7 +2435,6 @@ static void clean_up_after_endstop_or_probe_move() {
     }
 
   #endif // ABL_BILINEAR_SUBDIVISION
-
 #endif // AUTO_BED_LEVELING_BILINEAR
 
 /**
@@ -2502,7 +2502,7 @@ static void homeaxis(AxisEnum axis) {
 
   #if IS_SCARA
     // Only Z homing (with probe) is permitted
-    if (axis != Z_AXIS) { BUZZ(100, 880); return; }
+    if (axis != Z_AXIS) { buzz(100, 880); return; }
   #else
     #define CAN_HOME(A) \
       (axis == A##_AXIS && ((A##_MIN_PIN > -1 && A##_HOME_DIR < 0) || (A##_MAX_PIN > -1 && A##_HOME_DIR > 0)))
@@ -3356,11 +3356,11 @@ inline void gcode_G0_G1(
 
     #if ENABLED(LASERBEAM) && ENABLED(LASER_FIRE_G1)
       if (lfire) {
-        if (code_seen('S') && IsRunning()) laser.intensity = code_value_float();
-        if (code_seen('L') && IsRunning()) laser.duration = code_value_ulong();
-        if (code_seen('P') && IsRunning()) laser.ppm = code_value_float();
-        if (code_seen('D') && IsRunning()) laser.diagnostics = code_value_bool();
-        if (code_seen('B') && IsRunning()) laser_set_mode(code_value_int());
+        if (code_seen('S')) laser.intensity = code_value_float();
+        if (code_seen('L')) laser.duration = code_value_ulong();
+        if (code_seen('P')) laser.ppm = code_value_float();
+        if (code_seen('D')) laser.diagnostics = code_value_bool();
+        if (code_seen('B')) laser_set_mode(code_value_int());
 
         laser.status = LASER_ON;
         laser.fired = LASER_FIRE_G1;
@@ -3404,7 +3404,9 @@ inline void gcode_G0_G1(
  *    G3 X20 Y12 R14   ; CCW circle with r=14 ending at X20 Y12
  */
 #if ENABLED(ARC_SUPPORT)
+
   inline void gcode_G2_G3(bool clockwise) {
+
     if (IsRunning()) {
 
       #if ENABLED(SF_ARC_FIX)
@@ -3415,11 +3417,11 @@ inline void gcode_G0_G1(
       gcode_get_destination();
 
       #if ENABLED(LASERBEAM) && ENABLED(LASER_FIRE_G1)
-        if (code_seen('S') && IsRunning()) laser.intensity = code_value_float();
-        if (code_seen('L') && IsRunning()) laser.duration = code_value_ulong();
-        if (code_seen('P') && IsRunning()) laser.ppm = code_value_float();
-        if (code_seen('D') && IsRunning()) laser.diagnostics = code_value_bool();
-        if (code_seen('B') && IsRunning()) laser_set_mode(code_value_int());
+        if (code_seen('S')) laser.intensity = code_value_float();
+        if (code_seen('L')) laser.duration = code_value_ulong();
+        if (code_seen('P')) laser.ppm = code_value_float();
+        if (code_seen('D')) laser.diagnostics = code_value_bool();
+        if (code_seen('B')) laser_set_mode(code_value_int());
 
         laser.status = LASER_ON;
         laser.fired = LASER_FIRE_G1;
@@ -3462,6 +3464,7 @@ inline void gcode_G0_G1(
       }
     }
   }
+
 #endif // ARC_SUPPORT
 
 /**
@@ -4414,7 +4417,7 @@ inline void gcode_G28() {
    *      Will fail if the printer has not been homed with G28.
    *
    * Enhanced G29 Auto Bed Levelling Probe Routine
-   * 
+   *
    * Parameters With AUTO_BED_LEVELING_GRID:
    *
    *  P  Set the size of the grid that will be probed (P x P points).
@@ -4429,13 +4432,18 @@ inline void gcode_G28() {
    *  V  Set the verbose level (0-4). Example: "G29 V3"
    *
    *  T  Generate a Bed Topology Report. Example: "G29 P5 T" for a detailed report.
-   *     This is useful for manual bed levelling and finding flaws in the bed (to
+   *     This is useful for manual bed leveling and finding flaws in the bed (to
    *     assist with part placement).
+   *     Not supported by non-linear delta printer bed leveling.
    *
    *  F  Set the Front limit of the probing grid
    *  B  Set the Back limit of the probing grid
    *  L  Set the Left limit of the probing grid
    *  R  Set the Right limit of the probing grid
+   *
+   * Parameters with BILINEAR only:
+   *
+   *  Z  Supply an additional Z probe offset
    *
    * Global Parameters:
    *
@@ -4948,6 +4956,7 @@ inline void gcode_G28() {
 
     if (planner.abl_enabled)
       SYNC_PLAN_POSITION_KINEMATIC();
+
   }
 
 #endif // HAS_ABL
@@ -5449,7 +5458,7 @@ inline void gcode_G60() {
     SERIAL_LMV(ER, MSG_INVALID_POS_SLOT, (int)NUM_POSITON_SLOTS);
     return;
   } 
-  memcpy(stored_position[slot], current_position, sizeof(*stored_position));
+  memcpy(stored_position[slot], current_position, sizeof(current_position));
   pos_saved = true;
 
   SERIAL_M(MSG_SAVED_POS);
@@ -6432,7 +6441,7 @@ inline void gcode_M92() {
       if (code_seen('D')) {
         ptr = (unsigned char*) __brkval;
 
-        // We want to start and end the dump on a nice 16 byte boundry even though
+        // We want to start and end the dump on a nice 16 byte boundary even though
         // the values we are using are not 16 byte aligned.
         //
         SERIAL_M("\n__brkval : ");
@@ -8799,16 +8808,19 @@ inline void gcode_M532() {
       laser.rasterlaserpower =  laser.intensity;
     }
 
-    if (code_seen('L') && IsRunning()) laser.duration = code_value_ulong();
-    if (code_seen('P') && IsRunning()) laser.ppm = code_value_float();
-    if (code_seen('B') && IsRunning()) laser_set_mode(code_value_int());
-    if (code_seen('R') && IsRunning()) laser.raster_mm_per_pulse = (code_value_float());
+    if(IsRunning()) {
+      if (code_seen('L')) laser.duration = code_value_ulong();
+      if (code_seen('P')) laser.ppm = code_value_float();
+      if (code_seen('B')) laser_set_mode(code_value_int());
+      if (code_seen('R')) laser.raster_mm_per_pulse = (code_value_float());
+    }
 
     if (code_seen('F')) {
       float next_feedrate = code_value_linear_units();
       if(next_feedrate > 0.0) feedrate_mm_s = next_feedrate;
     }
   }
+
 #endif // LASERBEAM
 
 #if MECH(MUVE3D)
@@ -11887,6 +11899,7 @@ static void report_current_position() {
       #endif
     }
   }
+
 #endif // FAST_PWM_FAN
 
 void quickstop_stepper() {
@@ -12301,7 +12314,6 @@ void stop() {
 /**
  * Marlin entry-point: Set up before the program loop
  *  - Set up Alligator Board
- *  - Set up WANHAO D6 OLED
  *  - Set up the kill pin, filament runout, power hold
  *  - Start the serial port
  *  - Print startup messages and diagnostics
