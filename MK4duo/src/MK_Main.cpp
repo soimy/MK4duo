@@ -3994,16 +3994,6 @@ inline void gcode_G28() {
 
   home_all_axis = (!homeX && !homeY && !homeZ && !homeE) || (homeX && homeY && homeZ);
 
-  #if ENABLED(NPR2)
-    if ((home_all_axis) || (code_seen('E'))) {
-      active_driver = active_extruder = 1;
-      planner.buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], -200, COLOR_HOMERATE, active_extruder, active_driver);
-      stepper.synchronize();
-      old_color = 99;
-      active_driver = active_extruder = 0;
-    }
-  #endif
-
   #if MECH(DELTA)
 
     /**
@@ -4042,9 +4032,7 @@ inline void gcode_G28() {
     #endif
 
     #if ENABLED(QUICK_HOME)
-
       if (home_all_axis || (homeX && homeY)) quick_home_xy();
-
     #endif
 
     #if ENABLED(HOME_Y_BEFORE_X)
@@ -4108,6 +4096,18 @@ inline void gcode_G28() {
     SYNC_PLAN_POSITION_KINEMATIC();
 
   #endif // !DELTA (gcode_G28)
+
+  #if ENABLED(NPR2)
+    if ((home_all_axis) || (code_seen('E'))) {
+      set_destination_to_current();
+      destination[E_AXIS] = -200;
+      active_driver = active_extruder = 1;
+      planner.buffer_line_kinematic(destination, COLOR_HOMERATE, active_extruder, active_driver);
+      stepper.synchronize();
+      old_color = 99;
+      active_driver = active_extruder = 0;
+    }
+  #endif
 
   endstops.not_homing();
 
