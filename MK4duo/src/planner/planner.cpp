@@ -84,7 +84,7 @@ float Planner::min_feedrate_mm_s,
       Planner::acceleration,                    // Normal acceleration mm/s^2  DEFAULT ACCELERATION for all printing moves. M204 SXXXX
       Planner::retract_acceleration[EXTRUDERS], // Retract acceleration mm/s^2 filament pull-back and push-forward while standing still in the other axes M204 TXXXX
       Planner::travel_acceleration,             // Travel acceleration mm/s^2  DEFAULT ACCELERATION for all NON printing moves. M204 MXXXX
-      Planner::max_jerk[XYZE_N];                 // The largest speed change requiring no acceleration
+      Planner::max_jerk[XYZE_N];                // The largest speed change requiring no acceleration
 
 #if HAS(ABL)
   bool Planner::abl_enabled = false; // Flag that auto bed leveling is enabled
@@ -926,7 +926,7 @@ void Planner::_buffer_line(const float &a, const float &b, const float &c, const
       }
     #elif ENABLED(MKR4) && (EXTRUDERS == 2) && (DRIVER_EXTRUDERS == 1)
       enable_e0();
-    #else // MKR4 or NPr2
+    #elif ENABLED(MKR4)
       switch(extruder) {
         case 0:
           enable_e0();
@@ -941,7 +941,9 @@ void Planner::_buffer_line(const float &a, const float &b, const float &c, const
           enable_e1();
         break;
       }
-    #endif // MKR4 && NPR2
+    #elif ENABLED(NPR2)
+      enable_e0();
+    #endif
   }
 
   if (esteps)

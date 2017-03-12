@@ -60,7 +60,6 @@
     private:
 
       const float degreesToRadians = M_PI / 180.0;
-      const float radiansToDegrees = 180.0 / M_PI;
 
       #if ENABLED(DELTA_FAST_SQRT) && DISABLED(MATH_USE_HAL)
         float Q_rsqrt(float number);
@@ -70,9 +69,6 @@
       float delta_diagonal_rod_2[ABC]; // Diagonal rod 2
       float towerX[ABC];      // The X coordinate of each tower
       float towerY[ABC];      // The Y coordinate of each tower
-      float Xbc, Xca, Xab, Ybc, Yca, Yab;
-      float coreFa, coreFb, coreFc;
-      float Q, Q2, D2;
 
   };
 

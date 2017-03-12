@@ -60,19 +60,6 @@
     towerX[C_AXIS] = (radius + tower_adj[5]) * cos((90 + tower_adj[2]) * degreesToRadians);  // back middle tower
     towerY[C_AXIS] = (radius + tower_adj[5]) * sin((90 + tower_adj[2]) * degreesToRadians); 
 
-    Xbc = towerX[C_AXIS] - towerX[B_AXIS];
-    Xca = towerX[A_AXIS] - towerX[C_AXIS];
-    Xab = towerX[B_AXIS] - towerX[A_AXIS];
-    Ybc = towerY[C_AXIS] - towerY[B_AXIS];
-    Yca = towerY[A_AXIS] - towerY[C_AXIS];
-    Yab = towerY[B_AXIS] - towerY[A_AXIS];
-    coreFa = sq(towerX[A_AXIS]) + sq(towerY[A_AXIS]);
-    coreFb = sq(towerX[B_AXIS]) + sq(towerY[B_AXIS]);
-    coreFc = sq(towerX[C_AXIS]) + sq(towerY[C_AXIS]);
-    Q = 2 * (Xca * Yab - Xab * Yca);
-    Q2 = sq(Q);
-    D2 = sq(diagonal_rod);
-
   }
 
   // Compute the derivative of height with respect to a parameter at the specified motor endpoints.
