@@ -30,7 +30,7 @@
 #ifndef LANGUAGE_IT_H
 #define LANGUAGE_IT_H
 
-#define DISPLAY_CHARSET_ISO10646_1  // use the better font on full graphic displays.
+#define DISPLAY_CHARSET_ISO10646_1
 
 #define WELCOME_MSG                         MACHINE_NAME _UxGT(" pronta.")
 #define MSG_SD_INSERTED                     _UxGT("SD Card inserita")
@@ -92,11 +92,7 @@
 #define MSG_BED                             _UxGT("Piatto")
 #define MSG_CHAMBER                         _UxGT("Camera")
 #define MSG_COOLER                          _UxGT("Raffreddamento")
-#if ENABLED(DOGLCD)
-  #define MSG_FAN_SPEED                     _UxGT("Velocità ventola")
-#else
-  #define MSG_FAN_SPEED                     _UxGT("Velocita ventola")
-#endif
+#define MSG_FAN_SPEED                       _UxGT("Vel. ventola")
 #define MSG_FLOW                            _UxGT("Flusso")
 #define MSG_CONTROL                         _UxGT("Controllo")
 #define MSG_FIX_LOSE_STEPS                  _UxGT("Fix axis steps")
@@ -189,11 +185,11 @@
 #define MSG_ERR_MINTEMP                     _UxGT("Err: TEMP MINIMA")
 #define MSG_ERR_MAXTEMP_BED                 _UxGT("Err: TEMP MASSIMA PIATTO")
 #define MSG_ERR_MINTEMP_BED                 _UxGT("Err: TEMP MINIMA PIATTO")
+#define MSG_ERR_MAXTEMP_CHAMBER             _UxGT("Err: TEMP MASSIMA CAMERA")
+#define MSG_ERR_MINTEMP_CHAMBER             _UxGT("Err: TEMP MINIMA CAMERA")
+#define MSG_ERR_MAXTEMP_COOLER              _UxGT("Err: TEMP MASSIMA COOLER")
+#define MSG_ERR_MINTEMP_COOLER              _UxGT("Err: TEMP MINIMA COOLER")
 #define MSG_ERR_Z_HOMING                    _UxGT("G28 Z Vietato")
-#define MSG_ERR_MAXTEMP_CHAMBER             _UxGT("MAXTEMP CHAMBER ERROR")
-#define MSG_ERR_MINTEMP_CHAMBER             _UxGT("MINTEMP CHAMBER ERROR")
-#define MSG_ERR_MAXTEMP_COOLER              _UxGT("MAXTEMP COOLER ERROR")
-#define MSG_ERR_MINTEMP_COOLER              _UxGT("MINTEMP COOLER ERROR")
 #define MSG_HALTED                          _UxGT("STAMPANTE FERMATA")
 #define MSG_PLEASE_RESET                    _UxGT("Riavviare prego")
 #define MSG_END_DAY                         _UxGT("giorni")
