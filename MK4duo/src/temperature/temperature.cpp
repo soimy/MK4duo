@@ -209,6 +209,9 @@ int Temperature::minttemp_raw[HOTENDS] = ARRAY_BY_HOTENDS_N(HEATER_0_RAW_LO_TEMP
 
 #if ENABLED(MAX_CONSECUTIVE_LOW_TEMPERATURE_ERROR_ALLOWED)
   int Temperature::consecutive_low_temperature_error[HOTENDS] = { 0 };
+  #if HAS(TEMP_BED)
+    int Temperature::consecutive_bed_low_temperature_error = 0;
+  #endif
 #endif
 
 #if ENABLED(MILLISECONDS_PREHEAT_TIME)
@@ -2721,14 +2724,23 @@ void Temperature::isr() {
       #endif
     }
 
-    #if HAS_TEMP_BED
+    #if HAS(TEMP_BED)
       #if HEATER_BED_RAW_LO_TEMP > HEATER_BED_RAW_HI_TEMP
         #define GEBED <=
       #else
         #define GEBED >=
       #endif
       if (current_temperature_bed_raw GEBED bed_maxttemp_raw) max_temp_error(-1);
-      if (bed_minttemp_raw GEBED current_temperature_bed_raw && target_temperature_bed > 0.0f) min_temp_error(-1);
+      if (bed_minttemp_raw GEBED current_temperature_bed_raw && target_temperature_bed > 0.0f) {
+        #if ENABLED(MAX_CONSECUTIVE_LOW_TEMPERATURE_ERROR_ALLOWED)
+          if (++consecutive_bed_low_temperature_error >= MAX_CONSECUTIVE_LOW_TEMPERATURE_ERROR_ALLOWED)
+        #endif
+            min_temp_error(-1);
+      }
+      #if ENABLED(MAX_CONSECUTIVE_LOW_TEMPERATURE_ERROR_ALLOWED)
+        else
+          consecutive_bed_low_temperature_error = 0;
+      #endif
     #endif
 
     #if HAS(TEMP_CHAMBER)
