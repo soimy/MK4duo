@@ -132,6 +132,9 @@ constexpr uint8_t RST_BACKUP = 64;
 #undef HIGH
 #define HIGH        1
 
+// EEPROM START
+#define EEPROM_OFFSET 10
+
 /**
  * Stepper Definition
  */

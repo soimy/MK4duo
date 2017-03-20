@@ -85,6 +85,9 @@
 #undef HIGH
 #define HIGH        1
 
+// EEPROM START
+#define EEPROM_OFFSET 100
+
 /**
  * Stepper Definition
  */

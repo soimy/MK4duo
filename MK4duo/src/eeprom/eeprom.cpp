@@ -38,8 +38,7 @@
 
 #include "../../base.h"
 
-#define EEPROM_VERSION "MKV30"
-#define EEPROM_OFFSET 10
+#define EEPROM_VERSION "MKV31"
 
 /**
  * MKV430 EEPROM Layout:
