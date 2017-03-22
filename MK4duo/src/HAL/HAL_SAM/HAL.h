@@ -86,6 +86,10 @@
   #define strncpy_P(dest, src, num) strncpy((dest), (src), (num))
 #endif
 
+// TEMPERATURE
+#define OVERSAMPLENR 16
+#define PID_dT (((OVERSAMPLENR + 2) * 12.0) / (float)(TEMP_TIMER_FREQUENCY * PID_dT_FACTOR))
+
 /**
  * Public Variables
  */

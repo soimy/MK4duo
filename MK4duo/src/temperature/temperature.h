@@ -72,14 +72,6 @@ class Temperature {
       static uint8_t fanSpeedSoftPwm;
     #endif
 
-    #if ENABLED(PIDTEMP) || ENABLED(PIDTEMPBED) || ENABLED(PIDTEMPCHAMBER) || ENABLED(PIDTEMPCOOLER)
-      #if ENABLED(ARDUINO_ARCH_SAM)
-        #define PID_dT (((OVERSAMPLENR + 2) * 12.0) / (TEMP_TIMER_FREQUENCY * PID_dT_FACTOR))
-      #else
-        #define PID_dT ((OVERSAMPLENR * 12.0) / (TEMP_TIMER_FREQUENCY * PID_dT_FACTOR))
-      #endif
-    #endif
-
     #if ENABLED(PIDTEMP)
       static float Kp[HOTENDS], Ki[HOTENDS], Kd[HOTENDS], Kc[HOTENDS];
       #define PID_PARAM(param, h) Temperature::param[h]

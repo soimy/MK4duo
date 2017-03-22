@@ -173,6 +173,10 @@
                  "r26" , "r27" \
                )
 
+// TEMPERATURE
+#define OVERSAMPLENR 16
+#define PID_dT ((OVERSAMPLENR * 12.0) / (float)(TEMP_TIMER_FREQUENCY * PID_dT_FACTOR))
+
 /**
  * Timers
  */
