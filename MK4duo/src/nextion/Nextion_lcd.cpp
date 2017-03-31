@@ -118,9 +118,9 @@
   NexVariable Language  = NexVariable   (2,   14, "lang");
   NexVariable VSpeed    = NexVariable   (2,   15, "vspeed");
   NexTimer Fantimer     = NexTimer      (2,   16, "tm0");
-  NexPicture Fanpic     = NexPicture    (2,   19, "p1");
-  NexPicture NStop      = NexPicture    (2,   20, "p2");
-  NexPicture NPlay      = NexPicture    (2,   21, "p3");
+  NexPicture Fanpic     = NexPicture    (2,   19, "p0");
+  NexPicture NStop      = NexPicture    (2,   20, "p1");
+  NexPicture NPlay      = NexPicture    (2,   21, "p2");
   NexText LedStatus     = NexText       (2,   24, "t0");
   NexText LedCoord1     = NexText       (2,   25, "t1");
   NexText Hotend0       = NexText       (2,   26, "t2");
