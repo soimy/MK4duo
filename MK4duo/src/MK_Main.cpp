@@ -5059,7 +5059,7 @@ inline void gcode_G28() {
 
       SERIAL_MV(" Bed X:", FIXFLOAT(X_probe_location));
       SERIAL_MV(" Y: ", FIXFLOAT(Y_probe_location));
-      SERIAL_MV(" Z: ", FIXFLOAT(measured_z, 4);
+      SERIAL_MV(" Z: ", FIXFLOAT(measured_z), 4);
       SERIAL_EMV("  New Z probe offset = ", new_zprobe_zoffset, 4);
 
       if (code_seen('U') && code_value_bool() != 0)
