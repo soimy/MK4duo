@@ -5292,23 +5292,23 @@ inline void gcode_G28() {
         for (uint8_t i = 0; i < 6; i++) {
           xBedProbePoints[i] = deltaParams.probe_Radius * sin((2 * M_PI * i) / 6);
           yBedProbePoints[i] = deltaParams.probe_Radius * cos((2 * M_PI * i) / 6);
-          zBedProbePoints[i] = probe_pt(xBedProbePoints[i], yBedProbePoints[i], false, 4);
+          zBedProbePoints[i] = -probe_pt(xBedProbePoints[i], yBedProbePoints[i], false, 4);
         }
       }
       if (numPoints >= 10) {
         for (uint8_t i = 6; i < 9; i++) {
           xBedProbePoints[i] = (deltaParams.probe_Radius / 2) * sin((2 * M_PI * (i - 6)) / 3);
           yBedProbePoints[i] = (deltaParams.probe_Radius / 2) * cos((2 * M_PI * (i - 6)) / 3);
-          zBedProbePoints[i] = probe_pt(xBedProbePoints[i], yBedProbePoints[i], false, 4);
+          zBedProbePoints[i] = -probe_pt(xBedProbePoints[i], yBedProbePoints[i], false, 4);
         }
         xBedProbePoints[9] = 0.0;
         yBedProbePoints[9] = 0.0;
-        zBedProbePoints[9] = probe_pt(0.0, 0.0, true, 4);
+        zBedProbePoints[9] = -probe_pt(0.0, 0.0, true, 4);
       }
       else {
         xBedProbePoints[6] = 0.0;
         yBedProbePoints[6] = 0.0;
-        zBedProbePoints[6] = probe_pt(0.0, 0.0, true, 4);
+        zBedProbePoints[6] = -probe_pt(0.0, 0.0, true, 4);
       }
 
       using namespace mm;
