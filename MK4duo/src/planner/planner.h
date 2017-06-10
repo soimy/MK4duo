@@ -135,6 +135,12 @@ class Planner {
   public:
 
     /**
+     * The current position of the tool in absolute steps
+     * Recalculated if any axis_steps_per_mm are changed by gcode
+     */
+    static long position[NUM_AXIS];
+
+    /**
      * A ring buffer of moves described in steps
      */
     static block_t block_buffer[BLOCK_BUFFER_SIZE];
@@ -172,12 +178,6 @@ class Planner {
     #endif
 
   private:
-
-    /**
-     * The current position of the tool in absolute steps
-     * Recalculated if any axis_steps_per_mm are changed by gcode
-     */
-    static long position[NUM_AXIS];
 
     /**
      * Speed of previous path line segment
