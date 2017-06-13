@@ -493,7 +493,7 @@
 
   #define MENU_ITEM(TYPE, LABEL, ...) \
       if (lcdDrawUpdate) { \
-        lcd_row_list[_lcdLineNr]->setText(PSTR(LABEL)); \
+        lcd_row_list[_lcdLineNr]->setText(LABEL); \
         LcdMax.setValue(_lcdLineNr); \
       } \
       if (lcd_clicked && encoderLine == _lcdLineNr) { \
@@ -506,7 +506,7 @@
 
   #define STATIC_ITEM(LABEL) \
       if (lcdDrawUpdate) { \
-        lcd_row_list[_lcdLineNr]->setText(PSTR(LABEL)); \
+        lcd_row_list[_lcdLineNr]->setText(LABEL); \
         LcdMin.setValue(_lcdLineNr + 1); \
       } \
       ++_lcdLineNr \
