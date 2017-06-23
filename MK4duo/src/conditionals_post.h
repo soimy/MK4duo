@@ -956,6 +956,13 @@
     #endif
   #endif
 
+  /**
+   * PRINTER_EVENT_LEDS
+   */
+  #if !HAS_COLOR_LEDS && ENABLED(PRINTER_EVENT_LEDS)
+    #undef PRINTER_EVENT_LEDS
+  #endif
+
   // PWM SPEED and MASK
   #if DISABLED(HEATER_PWM_SPEED)
     #define HEATER_PWM_SPEED 0

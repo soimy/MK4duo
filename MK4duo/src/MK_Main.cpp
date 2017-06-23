@@ -9007,7 +9007,8 @@ inline void gcode_M303() {
     if (code_seen('S')) case_light_on = code_value_bool();
     update_case_light();
     SERIAL_SM(ECHO, "Case lights ");
-    case_light_on ? SERIAL_EM("on") : SERIAL_EM("off");
+    if (case_light_on) SERIAL_EM("on");
+    else SERIAL_EM("off");
   }
 
 #endif // HAS_CASE_LIGHT
