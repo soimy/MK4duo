@@ -5826,9 +5826,9 @@ void home_all_axes() { gcode_G28(true); }
     SERIAL_MV(" height ", soft_endstop_max[C_AXIS], 3);
     SERIAL_MV(" diagonal rod ", deltaParams.diagonal_rod, 3);
     SERIAL_MV(" delta radius ", deltaParams.delta_radius, 3);
-    SERIAL_MV(" Towers radius correction A", deltaParams.tower_radius_adj[A_AXIS], 2);
-    SERIAL_MV(" B", deltaParams.tower_radius_adj[B_AXIS], 2);
-    SERIAL_MV(" C", deltaParams.tower_radius_adj[C_AXIS], 2);
+    SERIAL_MV(" Towers radius correction I", deltaParams.tower_radius_adj[A_AXIS], 2);
+    SERIAL_MV(" J", deltaParams.tower_radius_adj[B_AXIS], 2);
+    SERIAL_MV(" K", deltaParams.tower_radius_adj[C_AXIS], 2);
     SERIAL_E;
 
     endstops.enable(true);
