@@ -31,7 +31,7 @@
     diagonal_rod              = DELTA_DIAGONAL_ROD;
     segments_per_second       = DELTA_SEGMENTS_PER_SECOND;
     print_radius              = DELTA_PRINTABLE_RADIUS;
-    probe_radius              = DELTA_PRINTABLE_RADIUS - max(abs(X_PROBE_OFFSET_FROM_NOZZLE), abs(Y_PROBE_OFFSET_FROM_NOZZLE));
+    probe_radius              = DELTA_PRINTABLE_RADIUS - max(abs(X_PROBE_OFFSET_FROM_NOZZLE), abs(Y_PROBE_OFFSET_FROM_NOZZLE)) - 5;
     delta_height              = DELTA_HEIGHT;
     endstop_adj[A_AXIS]       = TOWER_A_ENDSTOP_ADJ;
     endstop_adj[B_AXIS]       = TOWER_B_ENDSTOP_ADJ;
@@ -213,7 +213,7 @@
       soft_endstop_max[i] = print_radius;
     }
     soft_endstop_max[Z_AXIS]  = delta_height;
-    probe_radius              = print_radius - max(abs(X_PROBE_OFFSET_FROM_NOZZLE), abs(Y_PROBE_OFFSET_FROM_NOZZLE));
+    probe_radius              = print_radius - max(abs(X_PROBE_OFFSET_FROM_NOZZLE), abs(Y_PROBE_OFFSET_FROM_NOZZLE)) - 5;
 
     delta_diagonal_rod_2[A_AXIS] = sq(diagonal_rod + diagonal_rod_adj[A_AXIS]);
     delta_diagonal_rod_2[B_AXIS] = sq(diagonal_rod + diagonal_rod_adj[B_AXIS]);
