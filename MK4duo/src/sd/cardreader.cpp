@@ -186,7 +186,6 @@ bool CardReader::write_data(const uint8_t value) {
 }
 
 uint8_t CardReader::read_data() {
-  if (!cardOK || !isFileOpen()) return NULL;
   return (char)get();
 }
     
