@@ -44,7 +44,7 @@
 #define SERIAL_INIT(baud)                   MKSERIAL.begin(baud), HAL::delayMilliseconds(1)
 #define SERIAL_WRITE(x)                     MKSERIAL.write(x)
 #define SERIAL_PRINT(msg, ...)              MKSERIAL.print(msg, ## __VA_ARGS__)
-#define SERIAL_EOL                          MKSERIAL.println()
+#define SERIAL_EOL                          MKSERIAL.write('\n')
 
 // Things to write to serial from Program memory. Saves 400 to 2k of RAM.
 FORCE_INLINE void serialprintPGM(const char* str) {
