@@ -68,7 +68,7 @@
  * Displayed in the LCD "Ready" message.                                                 *
  *                                                                                       *
  *****************************************************************************************/
-#define CUSTOM_MACHINE_NAME "Prusa I3"
+#define CUSTOM_MACHINE_NAME "Symbot-XL"
 /*****************************************************************************************/
 
 
@@ -80,19 +80,19 @@
  * disable the endstop pullup resistors                                                  *
  *                                                                                       *
  *****************************************************************************************/
-#define ENDSTOPPULLUPS
+// #define ENDSTOPPULLUPS
 
 #if DISABLED(ENDSTOPPULLUPS)
 // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
-//#define ENDSTOPPULLUP_XMIN
-//#define ENDSTOPPULLUP_YMIN
+#define ENDSTOPPULLUP_XMIN
+#define ENDSTOPPULLUP_YMIN
 //#define ENDSTOPPULLUP_ZMIN
 //#define ENDSTOPPULLUP_Z2MIN
 //#define ENDSTOPPULLUP_Z3MIN
 //#define ENDSTOPPULLUP_Z4MIN
-//#define ENDSTOPPULLUP_XMAX
+#define ENDSTOPPULLUP_XMAX
 //#define ENDSTOPPULLUP_YMAX
-//#define ENDSTOPPULLUP_ZMAX
+#define ENDSTOPPULLUP_ZMAX
 //#define ENDSTOPPULLUP_Z2MAX
 //#define ENDSTOPPULLUP_Z3MAX
 //#define ENDSTOPPULLUP_Z4MAX
@@ -110,19 +110,19 @@
  * uses "false" here (most common setup).                                                *
  *                                                                                       *
  *****************************************************************************************/
-#define X_MIN_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_LOGIC   true    // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_LOGIC   true    // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_LOGIC   true    // set to true to invert the logic of the endstop.
 #define Z2_MIN_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
 #define Z3_MIN_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
 #define Z4_MIN_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
-#define X_MAX_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_LOGIC   true    // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
-#define Z_MAX_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
+#define Z_MAX_ENDSTOP_LOGIC   true    // set to true to invert the logic of the endstop.
 #define Z2_MAX_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
 #define Z3_MAX_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
 #define Z4_MAX_ENDSTOP_LOGIC  false   // set to true to invert the logic of the endstop.
-#define Z_PROBE_ENDSTOP_LOGIC false   // set to true to invert the logic of the probe.
+#define Z_PROBE_ENDSTOP_LOGIC true    // set to true to invert the logic of the probe.
 #define E_MIN_ENDSTOP_LOGIC   false   // set to true to invert the logic of the endstop.
 /*****************************************************************************************/
 
@@ -178,7 +178,7 @@
 // For example an inductive probe, or a setup that uses the nozzle to probe.
 // An inductive probe must be deactivated to go below
 // its trigger-point if hardware endstops are active.
-//#define Z_PROBE_FIX_MOUNTED
+#define Z_PROBE_FIX_MOUNTED
 
 // The BLTouch probe uses a Hall effect sensor and emulates a servo.
 // The default connector is SERVO 0.
@@ -204,16 +204,16 @@
 //    |           |
 //    O-- FRONT --+
 //  (0,0)
-#define X_PROBE_OFFSET_FROM_NOZZLE  0     // X offset: -left  [of the nozzle] +right
-#define Y_PROBE_OFFSET_FROM_NOZZLE  0     // Y offset: -front [of the nozzle] +behind
-#define Z_PROBE_OFFSET_FROM_NOZZLE -1     // Z offset: -below [of the nozzle] (always negative!)
+#define X_PROBE_OFFSET_FROM_NOZZLE  -29     // X offset: -left  [of the nozzle] +right
+#define Y_PROBE_OFFSET_FROM_NOZZLE  -15     // Y offset: -front [of the nozzle] +behind
+#define Z_PROBE_OFFSET_FROM_NOZZLE -3     // Z offset: -below [of the nozzle] (always negative!)
 
 // X and Y axis travel speed between probes, in mm/min
-#define XY_PROBE_SPEED 10000
+#define XY_PROBE_SPEED 100*60 
 // Speed for the first approach when double-probing (with PROBE_DOUBLE_TOUCH)
-#define Z_PROBE_SPEED_FAST 120
+#define Z_PROBE_SPEED_FAST 3*60 
 // Speed for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW 60
+#define Z_PROBE_SPEED_SLOW 2*60
 // Z Probe repetitions, median for best result
 #define Z_PROBE_REPETITIONS 1
 
@@ -266,7 +266,7 @@
  * Be sure you have this distance over your Z MAX POS in case.                           *
  *                                                                                       *
  *****************************************************************************************/
-#define MIN_Z_HEIGHT_FOR_HOMING   0
+#define MIN_Z_HEIGHT_FOR_HOMING   10
 /*****************************************************************************************/
 
 
@@ -279,7 +279,7 @@
  * Non Inverting (Active High) use 1                                                     *
  *                                                                                       *
  *****************************************************************************************/
-#define X_ENABLE_ON 0
+#define X_ENABLE_ON 1
 #define Y_ENABLE_ON 0
 #define Z_ENABLE_ON 0
 #define E_ENABLE_ON 0
@@ -311,9 +311,9 @@
  *****************************************************************************************/
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR false
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true 
 #define INVERT_E0_DIR false
-#define INVERT_E1_DIR false
+#define INVERT_E1_DIR true 
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -333,7 +333,7 @@
 #define DISABLE_Z false
 #define DISABLE_E false
 // Disable only inactive extruder and keep active extruder enabled
-//#define DISABLE_INACTIVE_EXTRUDER
+#define DISABLE_INACTIVE_EXTRUDER
 /*****************************************************************************************/
 
 
@@ -344,11 +344,11 @@
  * Travel limits after homing (units are in mm)                                          *
  *                                                                                       *
  *****************************************************************************************/
-#define X_MAX_POS 200
+#define X_MAX_POS 890 
 #define X_MIN_POS 0
-#define Y_MAX_POS 200
+#define Y_MAX_POS 1200
 #define Y_MIN_POS 0
-#define Z_MAX_POS 200
+#define Z_MAX_POS 805 
 #define Z_MIN_POS 0
 #define E_MIN_POS 0
 /*****************************************************************************************/
@@ -413,7 +413,7 @@
  *****************************************************************************************/
 //#define MESH_BED_LEVELING
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_3POINT
 
 // Enable detailed logging of G28, G29, G30, M48, etc.
@@ -440,7 +440,7 @@
 /** START MESH BED LEVELING or AUTO BED LEVELING LINEAR or AUTO BED LEVELING BILINEAR **/
 // Set the number of grid points per dimension
 #define GRID_MAX_POINTS_X 3
-#define GRID_MAX_POINTS_Y 3
+#define GRID_MAX_POINTS_Y 9
 /** END MESH BED LEVELING or AUTO BED LEVELING LINEAR or AUTO BED LEVELING BILINEAR **/
 
 /** START AUTO BED LEVELING LINEAR or AUTO BED LEVELING BILINEAR **/
@@ -490,7 +490,7 @@
  * ONLY FOR LEVELING BILINEAR OR MESH BED LEVELING                                       *
  *                                                                                       *
  *****************************************************************************************/
-//#define ENABLE_LEVELING_FADE_HEIGHT
+#define ENABLE_LEVELING_FADE_HEIGHT
 /*****************************************************************************************/
 
 
@@ -529,7 +529,7 @@
  *                                                                                       *
  *****************************************************************************************/
 // Default steps per unit               X,  Y,    Z,  E0...(per extruder)
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 3200, 625, 625, 625, 625}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {426.67, 426.67, 4000, 465, 465}
 /*****************************************************************************************/
 
 
@@ -537,7 +537,7 @@
  ********************************** Axis feedrate ****************************************
  *****************************************************************************************/
 //                                       X,   Y, Z,  E0...(per extruder). (mm/sec)
-#define DEFAULT_MAX_FEEDRATE          {300, 300, 2, 100, 100, 100, 100}
+#define DEFAULT_MAX_FEEDRATE          {150, 150, 6, 100, 100}
 // Feedrates for manual moves along        X,     Y,     Z,  E from panel
 #define MANUAL_FEEDRATE               {50*60, 50*60, 4*60, 10*60}
 // Minimum feedrate
@@ -554,13 +554,13 @@
  ******************************** Axis accelleration *************************************
  *****************************************************************************************/
 //  Maximum start speed for accelerated moves.    X,    Y,  Z,   E0...(per extruder)
-#define DEFAULT_MAX_ACCELERATION              {3000, 3000, 50, 1000, 1000, 1000, 1000}
+#define DEFAULT_MAX_ACCELERATION              {1000, 200, 10, 1000, 1000, 1000, 1000}
 //  Maximum acceleration in mm/s^2 for retracts   E0... (per extruder)
 #define DEFAULT_RETRACT_ACCELERATION          {10000, 10000, 10000, 10000}
 //  X, Y, Z and E* maximum acceleration in mm/s^2 for printing moves
-#define DEFAULT_ACCELERATION          3000
+#define DEFAULT_ACCELERATION          5000
 //  X, Y, Z acceleration in mm/s^2 for travel (non printing) moves
-#define DEFAULT_TRAVEL_ACCELERATION   3000
+#define DEFAULT_TRAVEL_ACCELERATION   1000
 /*****************************************************************************************/
 
 
@@ -576,9 +576,9 @@
  * value set here, it may happen instantaneously.                                        *
  *                                                                                       *
  *****************************************************************************************/
-#define DEFAULT_XJERK 10.0
-#define DEFAULT_YJERK 10.0
-#define DEFAULT_ZJERK  0.4
+#define DEFAULT_XJERK 5.0
+#define DEFAULT_YJERK 0.1
+#define DEFAULT_ZJERK  0.05
 // E0... (mm/sec) per extruder
 #define DEFAULT_EJERK                   {5.0, 5.0, 5.0, 5.0}
 /*****************************************************************************************/
@@ -589,8 +589,8 @@
  *****************************************************************************************/
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_X (50*60)
-#define HOMING_FEEDRATE_Y (50*60)
-#define HOMING_FEEDRATE_Z (2*60)
+#define HOMING_FEEDRATE_Y (30*60)
+#define HOMING_FEEDRATE_Z (4*60)
 
 // homing hits the endstop, then retracts by this distance, before it tries to slowly bump again:
 #define X_HOME_BUMP_MM 5
@@ -641,7 +641,7 @@
  * as the input of the motor.                                                            *
  *                                                                                       *
  *****************************************************************************************/
-//#define HYSTERESIS
+#define HYSTERESIS
 //#define ZWOBBLE
 
  // X, Y, Z, E hysteresis in mm.

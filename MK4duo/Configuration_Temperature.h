@@ -105,11 +105,11 @@
  *   999 : Dummy Table that ALWAYS reads 100 degC or the temperature defined below.                  *
  *                                                                                                   *
  *****************************************************************************************************/
-#define TEMP_SENSOR_0 1
-#define TEMP_SENSOR_1 0
+#define TEMP_SENSOR_0 51
+#define TEMP_SENSOR_1 51 
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 51 
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
 
@@ -325,7 +325,7 @@
 // If your configuration is significantly different than this and you don't understand the issues involved, you probably
 // shouldn't use bed PID until someone else verifies your hardware works.
 // If this is enabled, find your own PID constants below.
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 #define BED_HYSTERESIS        2 // Only disable heating if T>target+BED_HYSTERESIS and enable heating if T>target-BED_HYSTERESIS (works only if BED_LIMIT_SWITCHING is enabled)
@@ -468,7 +468,7 @@
  * Uncomment THERMAL PROTECTION COOLER to enable this feature for the cooler.   *
  *                                                                              *
  ********************************************************************************/
-//#define THERMAL_PROTECTION_HOTENDS
+#define THERMAL_PROTECTION_HOTENDS
 
 #define THERMAL_PROTECTION_PERIOD    40     // Seconds
 #define THERMAL_PROTECTION_HYSTERESIS 4     // Degrees Celsius
@@ -488,7 +488,7 @@
 /**
  * Thermal Protection parameters for the bed are just as above for hotends.
  */
-//#define THERMAL_PROTECTION_BED
+#define THERMAL_PROTECTION_BED
 
 #define THERMAL_PROTECTION_BED_PERIOD    20 // Seconds
 #define THERMAL_PROTECTION_BED_HYSTERESIS 2 // Degrees Celsius

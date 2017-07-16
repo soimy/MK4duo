@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\sym\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\sam\\1.6.11\\cores\\arduino",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Bridge\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Esplora\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Ethernet\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Firmata\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\GSM\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\LiquidCrystal\\src",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Robot_Control\\src",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\RobotIRremote\\src",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Robot_Motor\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\SD\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Servo\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\SpacebrewYun\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Stepper\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\Temboo\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\TFT\\src\\",
+                "C:\\Program Files (x86)\\Arduino\\libraries\\WiFi\\src\\"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "C:\\Users\\sym\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\sam\\1.6.11\\cores\\arduino"
+                ]
+            },
+            "intelliSenseMode": "msvc-x64"
+        }
+    ]
+}

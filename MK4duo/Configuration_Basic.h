@@ -92,7 +92,7 @@
  * Some particular clients re-start sending commands only after receiving a 'wait' when there is a bad serial-connection.
  * Milliseconds
  */
-#define NO_TIMEOUTS 1000
+#define NO_TIMEOUTS 5000
 // Uncomment to include more info in ok command
 //#define ADVANCED_OK
 
@@ -132,7 +132,7 @@
  * See: https://github.com/MagoKimbra/MK4duo/blob/master/Documentation/Hardware.md *
  *                                                                                       *
  *****************************************************************************************/
-#define MOTHERBOARD BOARD_RAMPS_13_HFB
+#define MOTHERBOARD BOARD_RAMPS_FD_V2
 /*****************************************************************************************/
 
 
@@ -192,11 +192,11 @@
  ***********************************************************************/
 // This defines the number of extruder real or virtual
 // 0,1,2,3,4,5,6
-#define EXTRUDERS 1
+#define EXTRUDERS 2
 
 // This defines the number of Driver extruder you have and use
 // 0,1,2,3,4,5,6
-#define DRIVER_EXTRUDERS 1
+#define DRIVER_EXTRUDERS 2
 /***********************************************************************/
 
 #endif /* _CONFIGURATION_BASIC_H_ */
