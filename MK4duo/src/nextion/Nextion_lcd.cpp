@@ -802,44 +802,52 @@
     }
 
     void lcd_filament_change_show_message(FilamentChangeMessage message) {
-      switch (message) {
-        case FILAMENT_CHANGE_MESSAGE_INIT:
-          lcd_filament_change_init_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_COOLDOWN:
-          lcd_filament_change_cool_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_UNLOAD:
-          lcd_filament_change_unload_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_INSERT:
-          lcd_filament_change_insert_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_LOAD:
-          lcd_filament_change_load_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_EXTRUDE:
-          lcd_filament_change_extrude_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_CLICK_TO_HEAT_NOZZLE:
-          lcd_filament_change_heat_nozzle();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_PRINTER_OFF:
-          lcd_filament_change_printer_off();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_WAIT_FOR_NOZZLES_TO_HEAT:
-          lcd_filament_change_wait_for_nozzles_to_heat();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_OPTION:
-          filament_change_menu_response = FILAMENT_CHANGE_RESPONSE_WAIT_FOR;
-          lcd_filament_change_option_menu();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_RESUME:
-          lcd_filament_change_resume_message();
-          break;
-        case FILAMENT_CHANGE_MESSAGE_STATUS:
-          Pprinter.show();
-          break;
+
+      static FilamentChangeMessage old_message;
+
+      if (old_message != message) {
+
+        switch (message) {
+          case FILAMENT_CHANGE_MESSAGE_INIT:
+            lcd_filament_change_init_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_COOLDOWN:
+            lcd_filament_change_cool_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_UNLOAD:
+            lcd_filament_change_unload_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_INSERT:
+            lcd_filament_change_insert_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_LOAD:
+            lcd_filament_change_load_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_EXTRUDE:
+            lcd_filament_change_extrude_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_CLICK_TO_HEAT_NOZZLE:
+            lcd_filament_change_heat_nozzle();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_PRINTER_OFF:
+            lcd_filament_change_printer_off();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_WAIT_FOR_NOZZLES_TO_HEAT:
+            lcd_filament_change_wait_for_nozzles_to_heat();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_OPTION:
+            filament_change_menu_response = FILAMENT_CHANGE_RESPONSE_WAIT_FOR;
+            lcd_filament_change_option_menu();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_RESUME:
+            lcd_filament_change_resume_message();
+            break;
+          case FILAMENT_CHANGE_MESSAGE_STATUS:
+            Pprinter.show();
+            break;
+        }
+
+        old_message = message;
       }
     }
 
