@@ -9822,7 +9822,7 @@ inline void gcode_M532() {
 
     // Define runplan for move axes
     #if IS_KINEMATIC
-			#define RUNPLAN(RATE_MM_S) planner.buffer_line_kinematic(destination, RATE_MM_S, active_extruder, active_driver);
+      #define RUNPLAN(RATE_MM_S) do_blocking_move_to(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], RATE_MM_S);
     #else
       #define RUNPLAN(RATE_MM_S) line_to_destination(RATE_MM_S);
     #endif
@@ -10024,7 +10024,7 @@ inline void gcode_M532() {
 
     #if IS_KINEMATIC
       // Move XYZ to starting position
-      planner.buffer_line_kinematic(lastpos, FILAMENT_CHANGE_XY_FEEDRATE, active_extruder, active_driver);
+      do_blocking_move_to(lastpos[X_AXIS], lastpos[Y_AXIS], lastpos[Z_AXIS], FILAMENT_CHANGE_XY_FEEDRATE);
     #else
       // Move XY to starting position, then Z
       destination[X_AXIS] = lastpos[X_AXIS];
