@@ -149,7 +149,7 @@
 // it will turn on when any driver is enabled
 // and turn off after the set amount of seconds from last driver being disabled again
 // You need to set CONTROLLERFAN_PIN in Configuration_pins.h
-//#define CONTROLLERFAN
+#define CONTROLLERFAN
 #define CONTROLLERFAN_SECS       60   // How many seconds, after all motors were disabled, the fan should run
 #define CONTROLLERFAN_SPEED     255   // 255 = full speed
 #define CONTROLLERFAN_MIN_SPEED   0
@@ -160,7 +160,7 @@
 // Multiple hotends can be assigned to the same pin in which case
 // the fan will turn on when any selected hotend is above the threshold.
 // You need to set HOTEND AUTO FAN PIN in Configuration_pins.h
-//#define HOTEND_AUTO_FAN
+#define HOTEND_AUTO_FAN
 //#define INVERTED_AUTO_FAN_PINS
 #define HOTEND_AUTO_FAN_TEMPERATURE  50
 #define HOTEND_AUTO_FAN_SPEED       255  // 255 = full speed
@@ -501,9 +501,9 @@
  * Cura (as of this writing) may produce Gcode incompatible with the automatic mode.     *
  *                                                                                       *
  *****************************************************************************************/
-//#define LIN_ADVANCE
+#define LIN_ADVANCE
 
-#define LIN_ADVANCE_K 75
+#define LIN_ADVANCE_K 50 
 
 // The calculated ratio (or 0) according to the formula W * H / ((D / 2) ^ 2 * PI)
 // Example: 0.4 * 0.2 / ((1.75 / 2) ^ 2 * PI) = 0.033260135
@@ -666,7 +666,7 @@
  * This feature is enabled by default for scara printer.               *
  *                                                                     *
  ***********************************************************************/
-//#define QUICK_HOME
+#define QUICK_HOME
 /***********************************************************************/
 
 
@@ -692,7 +692,7 @@
  * This feature is not compatible with delta and scara printer.        *
  *                                                                     *
  ***********************************************************************/
-//#define FORCE_HOME_XY_BEFORE_Z
+#define FORCE_HOME_XY_BEFORE_Z
 /***********************************************************************/
 
 
@@ -754,13 +754,13 @@
  * each x-carriage allowing faster printing speeds.                                      *
  *                                                                                       *
  *****************************************************************************************/
-//#define DUAL_X_CARRIAGE
+#define DUAL_X_CARRIAGE
 
 // Configuration for second X-carriage
 // Note: the first x-carriage is defined as the x-carriage which homes to the minimum endstop;
 // the second x-carriage always homes to the maximum endstop.
-#define X2_MIN_POS 80     // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
-#define X2_MAX_POS 353    // set maximum to the distance between toolheads when both heads are homed
+#define X2_MIN_POS 70     // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
+#define X2_MAX_POS 960    // set maximum to the distance between toolheads when both heads are homed
 #define X2_HOME_DIR 1     // the second X-carriage always homes to the maximum endstop position
 #define X2_HOME_POS X2_MAX_POS // default home position is the maximum carriage position
 // However: In this mode the HOTEND_OFFSET_X value for the second extruder provides a software
@@ -778,14 +778,15 @@
 //                                    once. (2nd extruder x offset and temp offset are set using: M605 S2 [Xnnn] [Rmmm])
 
 // This is the default power-up mode which can be later using M605.
-#define DEFAULT_DUAL_X_CARRIAGE_MODE DXC_FULL_CONTROL_MODE
+// #define DEFAULT_DUAL_X_CARRIAGE_MODE DXC_FULL_CONTROL_MODE
+#define DEFAULT_DUAL_X_CARRIAGE_MODE DXC_AUTO_PARK_MODE 
 
 // Default settings in "Auto-park Mode"
 #define TOOLCHANGE_PARK_ZLIFT   0.2      // the distance to raise Z axis when parking an extruder
 #define TOOLCHANGE_UNPARK_ZLIFT 1        // the distance to raise Z axis when unparking an extruder
 
 // Default x offset in duplication mode (typically set to half print bed width)
-#define DEFAULT_DUPLICATION_X_OFFSET 100
+#define DEFAULT_DUPLICATION_X_OFFSET 400
 /*****************************************************************************************/
 
 
@@ -1090,9 +1091,9 @@
  * Uncomment EEPROM SD for use writing EEPROM on SD                                                                     *
  *                                                                                                                      *
  ************************************************************************************************************************/
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 
-//#define EEPROM_CHITCHAT // Uncomment this to enable EEPROM Serial responses.
+#define EEPROM_CHITCHAT // Uncomment this to enable EEPROM Serial responses.
 //#define EEPROM_SD
 //#define DISABLE_M503
 /************************************************************************************************************************/
@@ -1922,7 +1923,7 @@
  **************************************************************************/
 //#define ADVANCED_PAUSE_FEATURE
 
-#define PAUSE_PARK_X_POS 3                  // X position of hotend
+#define PAUSE_PARK_X_POS 400                // X position of hotend
 #define PAUSE_PARK_Y_POS 3                  // Y position of hotend
 #define PAUSE_PARK_Z_ADD 10                 // Z addition of hotend (lift)
 #define PAUSE_PARK_XY_FEEDRATE 100          // X and Y axes feedrate in mm/s (also used for delta printers Z axis)
@@ -1952,7 +1953,7 @@
 #define PAUSE_PARK_NUMBER_OF_ALERT_BEEPS 5  // Number of alert beeps before printer goes quiet
 #define PAUSE_PARK_NO_STEPPER_TIMEOUT       // Enable to have stepper motors hold position during filament change
                                             // even if it takes longer than DEFAULT STEPPER DEACTIVE TIME.
-//#define PARK_HEAD_ON_PAUSE                // Go to filament change position on pause, return to print position on resume
+#define PARK_HEAD_ON_PAUSE                // Go to filament change position on pause, return to print position on resume
 /**************************************************************************/
 
 
